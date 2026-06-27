@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아무 말 대잔치</title>
+    <script defer src="./boardView.js"></script>
 </head>
 <body>
     <h1>게시글 상세 조회</h1>
@@ -22,9 +23,10 @@
         <h6 id="post-content">본문 내용</h6>
     </div>
     <!-- 긴 줄 -->
-    <div id="comment-container">
-        <div id="common-container">
-        </div>
+    <div id ="post-comment-container" class="common-container">
+        <textarea placeholder="댓글을 남겨주세요!"></textarea>
+        <button id="post-comment-btn">댓글 등록</button>
     </div>
+    <div id="comment-list-container"></div>
 </body>
 </html>

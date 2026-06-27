@@ -6,7 +6,7 @@ const passwordInput = document.getElementById('password');
 const nicknameInput = document.getElementById('nickname');
 
 signupBtn.addEventListener('click', async (event) => {
-    /*
+    
 try{
         const response = await fetch('http://localhost:8080/users/signup', {
             method: 'POST',
@@ -27,9 +27,9 @@ try{
 
         const data = await response.json();
         console.log('회원가입 성공:', data);
+        window.location.replace('../login/login.html');
     }catch(error){
         console.error('회원가입 중 오류 발생:', error);
     }
-        */
-    window.location.replace('../login/login.html');
+    
 });

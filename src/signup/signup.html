@@ -4,28 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아무 말 대잔치</title>
+    <link rel="stylesheet" href="signup.css">
     <script defer src="signup.js"></script>
 </head>
 <body>
-    <h1>회원가입</h1>
-    <div id="signup-form">
-        <h4>프로필 사진</h4>
-        <input id="profile-picture" type="file" accept="image/png, image/jpeg"/>
+    <header class="page-header">
+        <a class="back-link" href="../login/login.html" aria-label="로그인 화면으로 이동">&lt;</a>
+        <h1>아무 말 대잔치</h1>
+    </header>
 
-        <h4>이메일</h4>
-        <input id="email" type="text" placeholder="이메일을 입력하세요" />
+    <main class="signup-page">
+        <section class="signup-container">
+            <h2>회원가입</h2>
 
-        <h4>비밀번호</h4>
-        <input id="password" type="password" placeholder="비밀번호를 입력하세요"/>
+            <div id="signup-form">
+                <div class="profile-field">
+                    <label for="profile-picture">프로필 사진</label>
+                    <p class="helper-text profile-helper">* helper text</p>
+                    <label class="profile-upload" for="profile-picture">
+                        <span>+</span>
+                    </label>
+                    <input id="profile-picture" type="file" accept="image/png, image/jpeg"/>
+                </div>
 
-        <h4>비밀번호 확인</h4>
-        <input id="confirm-password" type="password" placeholder="비밀번호를 다시 입력하세요"/>
+                <label for="email">이메일*</label>
+                <input id="email" class="email-label" type="text" placeholder="이메일을 입력하세요" />
+                <p class="helper-text">* helper text</p>
 
-        <h4>닉네임</h4>
-        <input id="nickname" type="text" placeholder="닉네임을 입력하세요"/>
+                <label for="password">비밀번호*</label>
+                <input id="password" class="pwd-label" type="password" placeholder="비밀번호를 입력하세요"/>
+                <p class="helper-text">* helper text</p>
 
-        <br/><br/>
-        <button id="signup-btn">회원가입</button>
-    </div>
+                <label for="confirm-password">비밀번호 확인*</label>
+                <input id="confirm-password" type="password" placeholder="비밀번호를 한번 더 입력하세요"/>
+                <p class="helper-text">* helper text</p>
+
+                <label for="nickname">닉네임*</label>
+                <input id="nickname" type="text" placeholder="닉네임을 입력하세요"/>
+                <p class="helper-text">* helper text</p>
+
+                <button id="signup-btn" type="button">회원가입</button>
+            </div>
+
+            <a class="login-link" href="../login/login.html">로그인하러 가기</a>
+        </section>
+    </main>
 </body>
 </html>

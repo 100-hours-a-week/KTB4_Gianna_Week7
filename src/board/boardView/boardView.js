@@ -1,14 +1,15 @@
 import { loadHeader } from "../../components/header/header.js";
+import { getUser } from "../../module/module.js";
 
 loadHeader();
 
-const params = new URLSearchParams(window.location.search);
-export const postId = params.get("postId");
 
-(async()=>{
+const postId = getPostId();
+const boardViewProcess = async()=>{
     const cookie = await cookieStore.get('userId');
     const curUserId = cookie.value;
     try{
+        console.log(postId)
         const response = await fetch(`http://localhost:8080/posts/${postId}`, {
             method: 'GET',
             headers: {
@@ -18,16 +19,16 @@ export const postId = params.get("postId");
         });
 
         if (!response.ok) {
-            throw new Error('로그인 실패');
+            throw new Error('게시물 상세 조회 실패');
         }
 
         const data = await response.json();
         await makePostViewHeader(data.data, curUserId)
         makePostViewContent(data.data);
     }catch(error){
-        console.error('로그인 중 오류 발생:', error);
+        console.error('boardView 오류 발생:', error);
     }
-})();
+};
 
 const makePostViewHeader = async (post, curUserId) =>{
         const title = document.createElement('h3');
@@ -65,26 +66,7 @@ const makePostViewHeader = async (post, curUserId) =>{
         }        
 }
 
-export const getUser = async(userId) =>{
-    try{
-        const response = await fetch(`http://localhost:8080/users/${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            
-        });
 
-        if (!response.ok) {
-            throw new Error('로그인 실패');
-        }
-
-        const data = await response.json();
-        return data.data;
-    }catch(error){
-        console.error('로그인 중 오류 발생:', error);
-    }
-} 
 
 const makePostViewContent = (post) =>{
     const content = document.createElement('h6');
@@ -100,3 +82,5 @@ const makePostViewContent = (post) =>{
 }
 
 
+
+boardViewProcess();

@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>아무 말 대잔치</title>
+    <link rel="stylesheet" href="mypagePwdUpdate.css">
     <script type="module" defer src="./mypagePwdUpdate.js"></script>
 </head>
 <body>
     <div id="headerContainer"></div>
     
-    <h3>비밀번호수정</h3>
-    <div id="changePwdForm">
-        <h5 id="password-input-">비밀번호</h5>
-        <input type="password" id="passwordInput" placeholder="비밀번호를 입력하세요"></input>
-        <p class="helper-text" id="pwdHelperText">* helper text</p>
+    <main class="mypage-password-page">
+        <h3>비밀번호 수정</h3>
 
-        <h5>비밀번호 확인</h5>
-        <input type="password" id="passwordInputCheck" placeholder="비밀번호를 한번 더 입력하세요"></input>
-        <p class="helper-text" id="pwdCheckHelperText">* helper text</p>
+        <div id="changePwdForm">
+            <h5 id="password-input-">비밀번호</h5>
+            <input type="password" id="passwordInput" placeholder="비밀번호를 입력하세요">
+            <p class="helper-text" id="pwdHelperText">* helper text</p>
 
-        <button id="updatePwdBtn">수정하기</button>
-    </div>
+            <h5>비밀번호 확인</h5>
+            <input type="password" id="passwordInputCheck" placeholder="비밀번호를 한번 더 입력하세요">
+            <p class="helper-text" id="pwdCheckHelperText">* helper text</p>
+
+            <button id="updatePwdBtn">수정하기</button>
+        </div>
+    </main>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아무 말 대잔치</title>
     <script defer src="./boardView.js"></script>
+    <script defer src="./comment.js""></script>
 </head>
 <body>
     <h1>게시글 상세 조회</h1>
@@ -14,7 +15,7 @@
     </div>
     <!-- 긴 줄 -->
     <div id ="postCommentContainer" class="common-container">
-        <textarea placeholder="댓글을 남겨주세요!"></textarea>
+        <textarea id="commentContentEnter" placeholder="댓글을 남겨주세요!"></textarea>
         <button id="postCommentBtn">댓글 등록</button>
     </div>
     <div id="commentListContainer"></div>

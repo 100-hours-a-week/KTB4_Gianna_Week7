@@ -1,8 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("postId");
 
-
-
 (async()=>{
     const cookie = await cookieStore.get('userId');
     const curUserId = cookie.value;
@@ -20,7 +18,6 @@ const postId = params.get("postId");
         }
 
         const data = await response.json();
-        console.log(data.data)
         await makePostViewHeader(data.data, curUserId)
         makePostViewContent(data.data);
     }catch(error){
@@ -34,7 +31,6 @@ const makePostViewHeader = async (post, curUserId) =>{
         title.textContent =post.title;
 
         const user = await getUser(curUserId);
-        console.log(user)
         const profilePicture= document.createElement('img');
         profilePicture.src = '#';//user.profilePicture;
         profilePicture.id = "postProfilePicture";
@@ -60,6 +56,7 @@ const makePostViewHeader = async (post, curUserId) =>{
             deleteBtn.id = "postDeleteBtn";
             deleteBtn.textContent = "삭제"
 
+            
             postHeaderDiv.append(updateBtn, deleteBtn)
         }        
 }
@@ -97,3 +94,5 @@ const makePostViewContent = (post) =>{
     const postContainerDiv = document.getElementById('postContainer');
     postContainerDiv.append(content, file)
 }
+
+

@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+.main-header {
+    position: relative;
+    width: 100%;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #333333;
+    background-color: #f4f5f7;
+    color: #111111;
+    font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+#header-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.back-btn {
+    position: absolute;
+    left: calc(50% - 270px);
+    top: 50%;
+    padding: 0;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #111111;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.profile-toggle-btn {
+    position: absolute;
+    left: calc(50% + 230px);
+    top: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(-50%);
+    border: none;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+.profile-toggle-btn img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.profile-toggle-btn img[src=""] {
+    display: none;
+}
+
+.mypage-toggle-container {
+    position: absolute;
+    left: calc(50% + 200px);
+    top: 74px;
+    width: 120px;
+    background-color: #d9d9d9;
+    z-index: 10;
+}
+
+.mypage-toggle-container[hidden] {
+    display: none;
+}
+
+.mypage-toggle-container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mypage-toggle-container li,
+.mypage-toggle-container a {
+    display: block;
+    color: #111111;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.mypage-toggle-container li {
+    padding: 12px 8px;
+    cursor: pointer;
+}
+
+.mypage-toggle-container li:hover,
+.mypage-toggle-container a:hover {
+    background-color: #c4c4c4;
+}
+
+@media (max-width: 640px) {
+    .main-header {
+        height: 88px;
+    }
+
+    #header-title {
+        font-size: 26px;
+    }
+
+    .back-btn {
+        left: 24px;
+        font-size: 30px;
+    }
+
+    .profile-toggle-btn {
+        left: auto;
+        right: 24px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .mypage-toggle-container {
+        left: auto;
+        right: 12px;
+        top: 64px;
+    }
+}

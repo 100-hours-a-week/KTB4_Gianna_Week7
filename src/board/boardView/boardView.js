@@ -50,7 +50,7 @@ const makePostViewHeader = async (post, curUserId) =>{
             const updateBtn = document.createElement('button');
             updateBtn.id = "postUploadBtn";
             updateBtn.textContent = "수정";   
-            updateBtn.addEventListener('click', ()=> window.location.href= `../boardWrite/boardWrite.html?postId=${post.id}`);
+            updateBtn.addEventListener('click', ()=> window.location.href= `../boardWrite/boardWrite.html?postId=${post.postId}`);
             
             const deleteBtn = document.createElement('button');
             deleteBtn.id = "postDeleteBtn";

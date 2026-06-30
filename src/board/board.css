@@ -42,12 +42,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
     border-radius: 16px;
     background-color: #aca0eb;
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.write-post-link:hover {
+    background-color: #7f6aee;
 }
 
 .post-list-container {

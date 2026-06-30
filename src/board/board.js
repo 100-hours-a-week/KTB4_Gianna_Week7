@@ -1,4 +1,5 @@
 import { loadHeader } from "../components/header/header.js";
+import { formalizeDate } from "../module/module.js";
 
 loadHeader();
 
@@ -42,7 +43,7 @@ const makePostView = (post) =>{
     const postListContainer = document.getElementById('post-list-container');
     const postDiv = document.createElement("article");
     postDiv.classList.add('post-card');
-    makeEventListener(postDiv, post.id)
+    makePostClickEventListener(postDiv, post.id)
 
     const postMain = document.createElement('div');
     postMain.classList.add('post-card-main');
@@ -72,7 +73,7 @@ const makePostView = (post) =>{
 
     const date = document.createElement('span');
     date.classList.add('post-card-date');
-    date.textContent = post.createdAt;
+    date.textContent = formalizeDate(post.createdAt);
 
     meta.append(stats, date);
     postMain.append(meta);
@@ -92,7 +93,7 @@ const makePostView = (post) =>{
     postListContainer.appendChild(postDiv);
 }
 
-const makeEventListener = (postDiv, postId)=>{
+const makePostClickEventListener = (postDiv, postId)=>{
     postDiv.addEventListener('click' ,(event)=>{
         window.location.href = `./boardView/boardView.html?postId=${postId}`;
     }); 

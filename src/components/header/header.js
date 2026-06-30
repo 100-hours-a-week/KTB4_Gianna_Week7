@@ -1,3 +1,5 @@
+import { getUserId } from "../../module/module.js";
+
 export const loadHeader = async () => {
     try {
         const response = await fetch('/src/components/header/header.html');
@@ -12,11 +14,11 @@ export const loadHeader = async () => {
     } catch (error) {
         console.error('헤더 로딩 중 오류 발생:', error);
     } finally {
-        const profileToggleBtn = document.getElementById("profile-toggle-btn");
-        const profileImage = document.getElementById("header-profile-image");
+        const profileToggleBtn = document.getElementById("profileToggleBtn");
+        const profileImage = document.getElementById("headerProfilePicture");
         const mypageToggleContainer = document.querySelector(".mypage-toggle-container");
         const backBtn = document.getElementById("backBtn");
-        const logoutItem = document.getElementById("logout-item");
+        const logoutItem = document.getElementById("logoutItem");
 
         setProfileImage(profileImage);
 
@@ -54,12 +56,12 @@ const setProfileImage = async (profileImage) => {
             return;
         }
 
-        const userIdCookie = await cookieStore.get("userId");
-        if (!userIdCookie?.value) {
+        const userIdCookie = await getUserId();
+        if (!userIdCookie) {
             return;
         }
 
-        const response = await fetch(`http://localhost:8080/users/${userIdCookie.value}`, {
+        const response = await fetch(`http://localhost:8080/users/${userIdCookie}/profilePicture`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -71,10 +73,12 @@ const setProfileImage = async (profileImage) => {
         }
 
         const data = await response.json();
-        const profilePicture = data?.data?.profilePicture || data?.data?.profileImage;
+        const profilePictureData = data?.data?.profilePicture;
+        
 
-        if (profilePicture) {
-            profileImage.src = profilePicture;
+        if (profilePictureData) {
+            profileImage.src = profilePictureData;
+            localStorage.setItem("profilePicture", profilePictureData);
         }
     } catch (error) {
         console.error("프로필 이미지 로딩 중 오류 발생:", error);

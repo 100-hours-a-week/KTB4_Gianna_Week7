@@ -1,5 +1,5 @@
 import { loadHeader } from "../../components/header/header.js";
-import { getUserId, getPostId } from "../../module/module.js";
+import { getUserId, getPostId, formalizeDate } from "../../module/module.js";
 
 const titleInput = document.getElementById('postTitle')
 const contentInput = document.getElementById('postContent')

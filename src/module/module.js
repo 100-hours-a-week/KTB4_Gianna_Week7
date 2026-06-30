@@ -28,3 +28,18 @@ export const getUser = async(userId) =>{
         console.error('오류 발생:', error);
     }
 } 
+
+export const formalizeDate = (datetime) =>{
+    const [date, time] = datetime.split("T");
+    const [hourMinSec, milliSec] = time.split(".");
+    return `${date} ${hourMinSec}`;
+}
+
+const formalizeLikeViewComments = (value)=>{
+    if(value < 1000){ 
+        return value;
+    }else{
+        return `${Math.floor(value/1000)}k`
+    }
+
+}

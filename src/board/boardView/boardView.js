@@ -1,21 +1,18 @@
 import { loadHeader } from "../../components/header/header.js";
-import { getUser, getPostId } from "../../module/module.js";
+import { getUser, getUserId, getPostId } from "../../module/module.js";
 
 loadHeader();
 
 
 const postId = getPostId();
 const boardViewProcess = async()=>{
-    const cookie = await cookieStore.get('userId');
-    const curUserId = cookie.value;
+    const cookie = await getUserId();
     try{
-        console.log(postId)
         const response = await fetch(`http://localhost:8080/posts/${postId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            
         });
 
         if (!response.ok) {

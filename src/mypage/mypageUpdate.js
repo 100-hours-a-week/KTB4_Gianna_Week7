@@ -1,9 +1,9 @@
 import { loadHeader } from "../components/header/header.js";
-import { getUser, getuUserId } from "../module/module.js";
+import { getUser, getUserId } from "../module/module.js";
 
 loadHeader();
 
-const userId = await getuUserId();
+const userId = await getUserId();
 const user = await getUser(userId);
 
 const setForm = (user) =>{

@@ -1,18 +1,49 @@
 import { loadHeader } from "../../components/header/header.js";
-
-loadHeader();
-
+import { getUserId, getPostId } from "../../module/module.js";
 
 const titleInput = document.getElementById('postTitle')
 const contentInput = document.getElementById('postContent')
 const pictureInput = document.getElementById('postUploadedPicture')
+const helperText = document.getElementById('helperText');
 const postWriteBtn = document.getElementById('postWriteBtn')
 
 const curDate = new Date();
 
-const postWriteEventHandler = async () => {
-    const userIdCookie = await cookieStore.get('userId');
-    const userId = userIdCookie.value
+
+loadHeader();
+checkPostStatus();
+
+
+function changeButtonColorByCondition(){
+    if(titleInput.value.length >= 1 && contentInput.value.length >=1){ 
+        postWriteBtn.disabled = false;
+        postWriteBtn.style.backgroundColor = "#7f6aee";
+    }else {
+        postWriteBtn.disabled = true;
+        postWriteBtn.style.backgroundColor = "#aca0eb"
+    }
+}
+
+function checkPostStatus(){
+    if(titleInput.value.length === 0 || contentInput.value.length === 0 ){
+        helperText.textContent = "*제목, 내용을 모두 작성해주세요."
+    }else{
+        helperText.textContent=""
+    }
+}
+titleInput.addEventListener('input', ()=>{ 
+    changeButtonColorByCondition();
+    checkPostStatus();
+})
+
+contentInput.addEventListener('input', ()=>{ 
+   changeButtonColorByCondition();
+   checkPostStatus();
+})
+
+async function postWriteEventHandler() {
+    const userId = getUserId();
+
     try{
         const response = await fetch(`http://localhost:8080/posts/${userId}`, {
             method: 'POST',
@@ -39,9 +70,8 @@ const postWriteEventHandler = async () => {
     }
 }
 
-const postUpdateEventHandler = async () =>{
-    const params = new URLSearchParams(window.location.search);
-    const postId = params.get("postId");
+async function postUpdateEventHandler(){
+    const postId = getPostId();
 
     try{
         const response = await fetch(`http://localhost:8080/posts/${postId}`, {
@@ -67,6 +97,8 @@ const postUpdateEventHandler = async () =>{
     }
 }
 
+
+//실제 버튼 이벤트 리스너
 postWriteBtn.addEventListener('click', async (event)=>{
     if(postWriteBtn.textContent === "완료"){
         postWriteEventHandler();
@@ -75,7 +107,8 @@ postWriteBtn.addEventListener('click', async (event)=>{
     }
 })
 
-const setFormWithPostInfo = (post) => {
+//수정할 때 화면 설정
+async function setFormWithPostInfo(post){
     console.log(post)
     const postTitle = document.getElementById('postTitle');
     postTitle.value = post.title;
@@ -91,9 +124,9 @@ const setFormWithPostInfo = (post) => {
     postWriteContainerDiv.append(imgFileName)
 }
 
-const updateForm = async (postId) => {
+async function updateForm(postIdFromURL) {
     try {
-        const response = await fetch(`http://localhost:8080/posts/${postId}`, {
+        const response = await fetch(`http://localhost:8080/posts/${postIdFromURL}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -112,12 +145,12 @@ const updateForm = async (postId) => {
 }
 
 const params = new URLSearchParams(window.location.search);
-const postId = params.get("postId");
-if (postId) {
+const postIdFromURL = params.get("postId");
+if (postIdFromURL) {
     const postWriteTitle = document.getElementById('postWriteTitle');
     postWriteTitle.textContent = "게시글 수정"
     const postWriteBtn = document.getElementById('postWriteBtn');
     postWriteBtn.textContent = "수정하기"
 
-    updateForm(postId);
+    updateForm(postIdFromURL);
 }

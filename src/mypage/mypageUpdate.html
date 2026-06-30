@@ -13,7 +13,7 @@
     <main class="mypage-update-page">
         <h1>회원정보수정</h1>
 
-        <div class="mypage-update-container">
+        <div id="updateContainer" class="mypage-update-container">
             <section class="profile-section">
                 <h5 id="profilePictureLabel">프로필 사진*</h5>
                 <label class="profile-picture-edit" for="newProfilePicture">
@@ -28,13 +28,12 @@
 
                 <h5 id="nickNameLabel">닉네임</h5>
                 <input id="nicknameText" type="text">
-                <h6 id="nicknameHelperText">*helper text</h6>
+                <h6 id="nicknameHelperText"></h6>
 
                 <button id="updateBtn">수정하기</button>
                 <button id="deleteBtn">회원 탈퇴</button>
             </section>
             
-            <h4 id="toastMsg"></h4>
         </div>
     </main>
 </body>

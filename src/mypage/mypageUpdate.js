@@ -1,5 +1,6 @@
 import { loadHeader } from "../components/header/header.js";
 import { getUser, getUserId } from "../module/module.js";
+import { nicknameHelperTextMaker } from "../utils/helperTextMaker.js";
 
 loadHeader();
 
@@ -19,6 +20,17 @@ const setForm = (user) =>{
 }
 
 setForm(user);
+
+const nicknameText = document.getElementById('nicknameText');
+const nicknameHelperText = document.getElementById('nicknameHelperText')
+
+
+
+nicknameText.addEventListener('input', ()=>{
+    const helperText = nicknameHelperTextMaker(nicknameText.value);
+    nicknameHelperText.textContent = helperText;
+
+})
 
 const updateBtn = document.getElementById('updateBtn');
 updateBtn.addEventListener('click', async ()=>{
@@ -46,12 +58,27 @@ updateBtn.addEventListener('click', async ()=>{
             }
 
             const data = await response.json();
-            console.log(data.data)
+            if(!data.data){
+            const existingToastMsg = document.getElementById('pwdUpdateSuccessToastMsg');
+            if (existingToastMsg) {
+                existingToastMsg.remove();
+            }
+
+            const toastMsg = document.createElement('h5');
+            toastMsg.classList.add("toastMsg");
+            toastMsg.id = "pwdUpdateSuccessToastMsg"
+            toastMsg.textContent ="수정완료";
+
+            const updateContainer = document.getElementById('updateContainer');
+            updateContainer.append(toastMsg)
+            setTimeout(()=>{window.location.replace('/src/board/board.html')}, 3000)
+        }
         } catch(error){
             console.error('오류 발생:', error);
         }
     }  
 })
+
 
 const deleteBtn = document.getElementById('deleteBtn');
 deleteBtn.addEventListener('click', async ()=>{

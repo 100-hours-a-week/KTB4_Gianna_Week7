@@ -42,8 +42,8 @@ contentInput.addEventListener('input', ()=>{
 })
 
 async function postWriteEventHandler() {
-    const userId = getUserId();
-
+    const userId = await getUserId();
+    console.log(userId)
     try{
         const response = await fetch(`http://localhost:8080/posts/${userId}`, {
             method: 'POST',
